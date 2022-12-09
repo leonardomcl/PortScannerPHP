@@ -12,4 +12,7 @@ php filename.php localhost 80  (unique port scan)
 php filename localhost 21,22,23,25,80  (custom port scan)
 
 php filename localhost 20-100 (range custom port scan)
+  
+  
 
+![](https://raw.githubusercontent.com/leonardomcl/PortScannerPHP/main/scann.png)
