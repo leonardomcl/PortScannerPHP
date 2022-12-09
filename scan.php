@@ -19,19 +19,25 @@ function scan(string $host, array $ports)
     $start = date("H:i:s");
     echo "\n\033[35m[INFO] Starting at $start \033[0m\n\n";
 
-    echo "\nPORT    STATE \n";
+    echo "\nPORT\t\tSTATE \n";
 
     foreach ($ports as $port) {
         $con = @fsockopen($host, $port, $errno, $errstr, 2);
 
         if (is_resource($con)) {
-            echo "$port/tcp   \033[32mopen\033[0m \n";
+            if (strlen($port) < 4)
+                echo "$port/tcp\t\t\033[32mopen\033[0m \n";
+            else
+                echo "$port/tcp\t\033[32mopen\033[0m \n";
             fclose($con);
         } else {
             //echo "\033[31mCLOSED:\033[0m $port \n"
 
             if (count($ports) < 12)
-                echo "$port/tcp   \033[31mclosed\033[0m \n";
+                if (strlen($port) < 4)
+                    echo "$port/tcp\t\t\033[31mclosed\033[0m \n";
+                else
+                    echo "$port/tcp\t\033[31mclosed\033[0m \n";
         }
     }
 
